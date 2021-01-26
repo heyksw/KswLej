@@ -17,11 +17,11 @@ public class PlayerControl : MonoBehaviour
 
     void Update()
     {
-        //Stop Speed
+        /*//Stop Speed
         if (Input.GetButtonUp("Horizontal"))
         {
             rigid.velocity = new Vector2(rigid.velocity.normalized.x * 0.5f, rigid.velocity.y);
-        }
+        }*/
         if(Input.GetButtonDown("Jump") && !isJump)
         { 
             isJump = true;
