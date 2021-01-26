@@ -1,7 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-// Modified by ksw
+// Push Test
 
 public class PlayerControl : MonoBehaviour
 {
