@@ -19,19 +19,14 @@ public class PlayerControl : MonoBehaviour
 
     void Update()
     {
-<<<<<<< HEAD
         //Stop Speed
         if (Input.GetButtonUp("Horizontal"))
         {
             rigid.velocity = new Vector2(rigid.velocity.normalized.x * 0.5f, rigid.velocity.y);
         }
-        if(Input.GetButtonDown("Jump") && !isJump)
-        { 
-=======
         // jump 구현
         if (Input.GetButtonDown("Jump") && !isJump)
         {
->>>>>>> ac75bbfb1ea8c1042708b154cab82db7c00a15ee
             isJump = true;
             rigid.AddForce(Vector2.up * jumpPower, ForceMode2D.Impulse);
         }
