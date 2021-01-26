@@ -1,44 +1,45 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+// Modified by ksw
 
 public class PlayerControl : MonoBehaviour
 {
-    public float maxSpeed;
     public float jumpPower;
     bool isJump;
     Rigidbody2D rigid;
 
-    void Awake()
+    public float maxSpeed;
+
+
+    void Awake()    // initiating
     {
-        isJump = true;
         rigid = GetComponent<Rigidbody2D>();
     }
 
     void Update()
     {
-        //Stop Speed
-        if (Input.GetButtonUp("Horizontal"))
+        // jump 구현
+        if (Input.GetButtonDown("Jump") && !isJump)
         {
-            rigid.velocity = new Vector2(rigid.velocity.normalized.x * 0.5f, rigid.velocity.y);
-        }
-        if(Input.GetButtonDown("Jump") && !isJump)
-        { 
             isJump = true;
-            rigid.AddForce(new Vector2(0, jumpPower), ForceMode2D.Impulse);
+            rigid.AddForce(Vector2.up * jumpPower, ForceMode2D.Impulse);
         }
+
     }
     void FixedUpdate()
     {
-        //Move Speed
+        // 좌, 우 이동
         float h = Input.GetAxisRaw("Horizontal");
-        rigid.AddForce(new Vector2(h, 0), ForceMode2D.Impulse);
+        rigid.AddForce(Vector2.right * h * 0.2f, ForceMode2D.Impulse);
 
+        
         //Max Speed
         if (rigid.velocity.x > maxSpeed)
             rigid.velocity = new Vector2(maxSpeed, rigid.velocity.y);
         if (rigid.velocity.x < maxSpeed * (-1))
             rigid.velocity = new Vector2(maxSpeed * (-1), rigid.velocity.y);
+        
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
